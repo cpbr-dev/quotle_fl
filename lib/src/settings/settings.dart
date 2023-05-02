@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:quotle/src/theme/custom_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   final ValueChanged<bool> onThemeChanged;
+  final SharedPreferences mainSharedPreferences;
 
-  const SettingsPage({Key? key, required this.onThemeChanged})
-      : super(key: key);
+  const SettingsPage({
+    Key? key,
+    required this.onThemeChanged,
+    required this.mainSharedPreferences,
+  }) : super(key: key);
 
   @override
   _SettingsPageState createState() => _SettingsPageState();
@@ -14,11 +18,24 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   bool _isDarkMode = false;
 
+  @override
+  void initState() {
+    super.initState();
+    _loadTheme();
+  }
+
+  void _loadTheme() {
+    setState(() {
+      _isDarkMode = widget.mainSharedPreferences.getBool('isDarkMode') ?? false;
+    });
+  }
+
   void _toggleDarkMode(bool value) {
     setState(() {
       _isDarkMode = value;
     });
     widget.onThemeChanged(_isDarkMode);
+    widget.mainSharedPreferences.setBool('isDarkMode', _isDarkMode);
   }
 
   @override

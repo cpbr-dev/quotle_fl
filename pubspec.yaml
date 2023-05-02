@@ -1,5 +1,5 @@
 name: quotle
-description: A new Flutter project.
+description: A Quote guessing game.
 publish_to: 'none'
 version: 0.1.0
 
@@ -9,15 +9,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.5
+  shared_preferences: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  flutter_svg: ^0.17.1
 
 flutter:
   uses-material-design: true
   assets:
     - assets/
     - assets/icons/
+    - assets/images/
+    - assets/svg/

@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
-   width="27.73mm"
-   height="27.73mm"
-   viewBox="0 0 27.729999 27.73"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="21.442539mm"
+   height="20.84075mm"
+   viewBox="0 0 21.442539 20.84075"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
-   sodipodi:docname="logo app.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="app_logo.svg">
+  <metadata
+     id="metadata863">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
   <sodipodi:namedview
      id="namedview7"
      pagecolor="#ff7dff"
@@ -24,19 +37,20 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="4.1979134"
-     inkscape:cx="27.87099"
-     inkscape:cy="34.54097"
-     inkscape:window-width="1920"
-     inkscape:window-height="1001"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
+     inkscape:zoom="2.968373"
+     inkscape:cx="75.175933"
+     inkscape:cy="40.120713"
+     inkscape:window-width="1366"
+     inkscape:window-height="715"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer2"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
-     fit-margin-bottom="0" />
+     fit-margin-bottom="0"
+     inkscape:document-rotation="0" />
   <defs
      id="defs2">
     <rect
@@ -57,7 +71,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="display:none;opacity:0.400652"
-     transform="translate(-87.267944,-137.14911)">
+     transform="translate(-90.411675,-140.59373)">
     <image
        width="71.70208"
        height="47.095833"
@@ -71,15 +85,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Logo"
-     transform="translate(-87.267944,-137.14911)">
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.6807;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect22897"
-       width="27.73"
-       height="27.73"
-       x="87.267944"
-       y="137.14911"
-       ry="0" />
+     transform="translate(-90.411675,-140.59373)">
     <g
        id="g23305"
        transform="translate(0.10074775,0.55827518)">

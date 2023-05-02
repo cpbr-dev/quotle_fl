@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class GamePage extends StatefulWidget {
+class PlayingPage extends StatefulWidget {
   @override
-  _GamePageState createState() => _GamePageState();
+  _PlayingPageState createState() => _PlayingPageState();
 }
 
-class _GamePageState extends State<GamePage> {
+class _PlayingPageState extends State<PlayingPage> {
   int _score = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Game'),
+        title: Text('Playing'),
       ),
       body: Center(
         child: Column(
