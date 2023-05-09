@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quotle/src/game/loading_page.dart';
 import 'package:quotle/src/game/playing_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,7 +51,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     final theme = _isDarkMode ? CustomTheme.darkTheme : CustomTheme.lightTheme;
     return MaterialApp(
-        title: 'My Game',
+        title: 'Quotle Game',
         theme: theme,
         home: Scaffold(
           appBar: AppBar(),
@@ -62,7 +63,8 @@ class _MyAppState extends State<MyApp> {
                 onThemeChanged: _updateTheme,
                 mainSharedPreferences: widget.mainSharedPreferences,
               ),
-          '/playing': (context) => PlayingPage(),
+          '/playing': (context) => const PlayingPage(),
+          '/loading': (context) => const LoadingPage(),
         });
   }
 }

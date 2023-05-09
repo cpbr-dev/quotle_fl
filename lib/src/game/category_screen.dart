@@ -1,13 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:quotle/src/Widgets/category_button.dart';
 
 class CategorySelectPage extends StatefulWidget {
   @override
-  _CategorySelectState createState() => _CategorySelectState();
+  _CategorySelectState createState() {
+    return _CategorySelectState();
+  }
 }
 
 class _CategorySelectState extends State<CategorySelectPage> {
+  List<String> categoryList = [
+    'Philosophy',
+    'Inspirational',
+    'Humor',
+    'Cinema',
+  ];
+
+  List<Widget> categoryButtonList = [];
+
   @override
   Widget build(BuildContext context) {
+    if (categoryButtonList.isEmpty) {
+      // This is to avoid rebuilding the list on hot reloads
+      for (var element in categoryList) {
+        categoryButtonList
+            .add(CategoryButton(context: context, category: element));
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Categories'),
@@ -31,41 +51,7 @@ class _CategorySelectState extends State<CategorySelectPage> {
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/playing', arguments: 'all');
-                  },
-                  child: const Text('🎉  Tout'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/playing', arguments: 'film');
-                  },
-                  child: const Text('🎥  Film'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/playing',
-                        arguments: 'politics');
-                  },
-                  child: const Text('👩‍⚖️  Politique'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/playing',
-                        arguments: 'music');
-                  },
-                  child: const Text('🎵  Musique'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/playing',
-                        arguments: 'literature');
-                  },
-                  child: const Text('📚  Littérature'),
-                ),
-              ],
+              children: categoryButtonList,
             ),
           ],
         ),
