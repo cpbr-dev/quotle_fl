@@ -38,6 +38,7 @@ class PlayingPage extends StatefulWidget {
 
 class PlayingPageState extends State<PlayingPage> {
   final _controller = TextEditingController();
+  bool _fieldEnabled = true;
 
   List<String> words = [];
   List<bool> wordStatus = [];
@@ -55,6 +56,23 @@ class PlayingPageState extends State<PlayingPage> {
     wordHints = List<String>.generate(words.length, (index) => '');
   }
 
+  void _formLogic(String element) {
+    _submitForm(element);
+    _checkWin();
+  }
+
+  void _checkWin() {
+    if (wordStatus.every((element) => element)) {
+      //If all the words have been guessed, lock the text field
+      //display confetti
+      //display overlay with stats
+      setState(() {
+        _fieldEnabled = false;
+      });
+      
+    }
+  }
+
   void _submitForm(String element) {
     _controller.text = '';
     if (element.split(' ').join('') == '') {
@@ -65,7 +83,10 @@ class PlayingPageState extends State<PlayingPage> {
     Iterable<int> indices =
         Iterable<int>.generate(words.length, (index) => index).where((index) =>
             words[index].toLowerCase() == element.toLowerCase() ||
-            words[index].toLowerCase() == '${element.toLowerCase()}s');
+            words[index].toLowerCase() == '${element.toLowerCase()}s' ||
+            (words[index].toLowerCase() ==
+                    element.toLowerCase().substring(0, element.length - 1) &&
+                element.toLowerCase().endsWith('s')));
     // Add an 's' to the end of the word to account for pluralization
 
     //Convert the iterable to a list
@@ -76,7 +97,7 @@ class PlayingPageState extends State<PlayingPage> {
       setState(() {
         guessCount++;
       });
-      fetchProximity(element);
+      fetchProximityV2(element);
       return;
     }
 
@@ -95,12 +116,20 @@ class PlayingPageState extends State<PlayingPage> {
     }
   }
 
-  void fetchProximity(String word) async {
+  // Deprecated
+  void fetchProximity(String testWord) async {
     //API Request to find if this word is close to any of the words in the list
     //if it is, set it as the hint for that word
     //GET https://munstermc.pythonanywhere.com/compare?tryWord=$word&targetWord=$element
+    setState(() {
+      _fieldEnabled = false;
+    });
 
     for (var element in words) {
+      if (wordStatus[words.indexOf(element)]) {
+        continue;
+      } //Skip if the word has already been guessed
+
       //Compare each word in the list to the word that was guessed
       //using the API request above and return the similarity value, use http
       // Example :
@@ -112,7 +141,7 @@ class PlayingPageState extends State<PlayingPage> {
 
       final response = await http.get(
         Uri.parse(
-            'https://munstermc.pythonanywhere.com/compare?tryWord=$word&targetWord=$element'),
+            'https://munstermc.pythonanywhere.com/compare?tryWord=$testWord&targetWord=$element'),
       );
 
       if (response.statusCode == 200) {
@@ -122,9 +151,7 @@ class PlayingPageState extends State<PlayingPage> {
 
         if (similarity >= 0.50) {
           //If the similarity value is greater than 0.55, set the hint for that word
-          setState(() {
-            wordHints[words.indexOf(element)] = word;
-          });
+          wordHints[words.indexOf(element)] = testWord;
         }
       } else if (response.statusCode == 500) {
         //If the request was not successful, create a snackbar to notify the user
@@ -136,6 +163,60 @@ class PlayingPageState extends State<PlayingPage> {
         );
       }
     }
+    setState(() {
+      wordHints = wordHints;
+      _fieldEnabled = true;
+    });
+  }
+
+  // Faster version of fetchProximity but less accurate
+  void fetchProximityV2(String testWord) async {
+    final response = await http.get(
+      Uri.parse(
+          'https://munstermc.pythonanywhere.com/proximity?word=$testWord'),
+    );
+
+    final responseData = json.decode(response.body);
+    // Example response:
+    // [
+    // {
+    //     "word": "exemples",
+    //     "similarity": 0.560823380947113
+    // },
+    // ...
+    if (response.statusCode == 200) {
+      for (var element in responseData) {
+        if (!words.contains(element['word'])) continue;
+
+        if (wordStatus[words.indexOf(element['word'])]) {
+          continue;
+        } //Skip if the word has already been guessed
+
+        if (words.contains(element['word'])) {
+          // find the indices of the word in the list
+          Iterable<int> indices = Iterable<int>.generate(
+                  words.length, (index) => index)
+              .where((index) =>
+                  words[index].toLowerCase() == element['word'].toLowerCase());
+          // set the hint for each index to the testWord
+          for (var index in indices) {
+            wordHints[index] = testWord;
+          }
+        }
+      }
+    } else {
+      //If the request was not successful, create a snackbar to notify the user
+      // ignore: use_build_context_synchronously
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Word not found.'),
+        ),
+      );
+    }
+    setState(() {
+      wordHints = wordHints;
+    });
+    //if one of the words is in the response, set the testWord as its hint
   }
 
   final RegExp punctuationRegex =
@@ -293,8 +374,9 @@ class PlayingPageState extends State<PlayingPage> {
                   border: OutlineInputBorder(),
                   labelText: 'Enter your guess',
                 ),
+                enabled: _fieldEnabled,
                 autofocus: true,
-                onEditingComplete: () => _submitForm(_controller.text),
+                onEditingComplete: () => _formLogic(_controller.text),
                 maxLines: 1,
               ),
             ])
