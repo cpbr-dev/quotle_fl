@@ -23,8 +23,6 @@ class QuoteAPI {
   }
 
   static fetchQuote(String category) async {
-    String quote;
-
     final response = await http.get(
       Uri.parse('https://munstermc.pythonanywhere.com/quote?type=$category'),
     );
@@ -63,10 +61,7 @@ class QuoteAPI {
         }
       }
 
-      //Unnecessary but keeping for readability
-      quote = randomQuote['mainText'];
-
-      return [quote, wordsList, wordStatusList];
+      return [wordsList, wordStatusList];
     } else {
       throw Exception('Failed to load quote');
     }

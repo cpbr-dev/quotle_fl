@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MainMenu extends StatefulWidget {
+  const MainMenu({super.key});
+
   @override
-  _MainMenuState createState() => _MainMenuState();
+  MainMenuState createState() => MainMenuState();
 }
 
-class _MainMenuState extends State<MainMenu>
+class MainMenuState extends State<MainMenu>
     with SingleTickerProviderStateMixin {
   bool _isTitle = true;
   late AnimationController _controller;
@@ -72,6 +74,13 @@ class _MainMenuState extends State<MainMenu>
                     Navigator.pushNamed(context, '/settings');
                   },
                   child: const Text('Settings'),
+                ),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/about');
+                  },
+                  child: const Text('About'),
                 ),
               ],
             ),

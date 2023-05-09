@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quotle/src/game/loading_page.dart';
 import 'package:quotle/src/game/playing_screen.dart';
+import 'package:quotle/src/other/about_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:quotle/src/main_menu.dart';
@@ -22,10 +22,10 @@ class MyApp extends StatefulWidget {
       : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp> {
   bool _isDarkMode = false;
 
   @override
@@ -63,8 +63,10 @@ class _MyAppState extends State<MyApp> {
                 onThemeChanged: _updateTheme,
                 mainSharedPreferences: widget.mainSharedPreferences,
               ),
-          '/playing': (context) => const PlayingPage(),
-          '/loading': (context) => const LoadingPage(),
+          '/loading': (context) => LoadingScreen(
+                category: ModalRoute.of(context)!.settings.arguments as String,
+              ),
+          '/about': (context) => const AboutPage(),
         });
   }
 }
