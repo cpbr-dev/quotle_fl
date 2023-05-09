@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:quotle/src/api_tools/quote_api.dart';
 import 'package:http/http.dart' as http;
@@ -69,7 +68,6 @@ class PlayingPageState extends State<PlayingPage> {
       setState(() {
         _fieldEnabled = false;
       });
-      
     }
   }
 
