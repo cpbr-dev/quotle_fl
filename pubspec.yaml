@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_dotenv: ^5.0.2
   flutter_svg: ^2.0.5
   http: ^0.13.6
   shared_preferences: ^2.1.0
@@ -25,3 +26,4 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/svg/
+    - .env

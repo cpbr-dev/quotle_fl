@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:quotle/src/game/playing_screen.dart';
-import 'package:quotle/src/other/about_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:quotle/src/main_menu.dart';
 import 'package:quotle/src/settings/settings.dart';
 import 'package:quotle/src/game/category_screen.dart';
 import 'package:quotle/src/theme/custom_theme.dart';
+import 'package:quotle/src/game/playing_screen.dart';
+import 'package:quotle/src/other/about_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences mainSharedPreferences =
       await SharedPreferences.getInstance();
+  await dotenv.load(fileName: ".env");
   runApp(MyApp(mainSharedPreferences: mainSharedPreferences));
 }
 
@@ -63,7 +65,7 @@ class MyAppState extends State<MyApp> {
                 onThemeChanged: _updateTheme,
                 mainSharedPreferences: widget.mainSharedPreferences,
               ),
-          '/loading': (context) => LoadingScreen(
+          '/loading': (context) => PlayingPage(
                 category: ModalRoute.of(context)!.settings.arguments as String,
               ),
           '/about': (context) => const AboutPage(),

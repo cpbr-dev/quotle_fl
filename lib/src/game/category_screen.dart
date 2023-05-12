@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:quotle/src/Widgets/category_button.dart';
 
 class CategorySelectPage extends StatefulWidget {
+  const CategorySelectPage({super.key});
+
   @override
-  _CategorySelectState createState() {
-    return _CategorySelectState();
+  CategorySelectState createState() {
+    return CategorySelectState();
   }
 }
 
-class _CategorySelectState extends State<CategorySelectPage> {
+class CategorySelectState extends State<CategorySelectPage> {
   List<String> categoryList = [
     'Philosophy',
     'Inspirational',
