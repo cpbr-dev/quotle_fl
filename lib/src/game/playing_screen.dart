@@ -1,11 +1,7 @@
-import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:quotle/src/Widgets/quote_container.dart';
 import 'package:quotle/src/game_logic/quote.dart';
-import 'package:quotle/src/settings/settings.dart';
-import 'package:quotle/src/util/endpoint.dart';
-import 'package:http/http.dart' as http;
+//import 'package:quotle/src/settings/settings.dart';
 import 'package:quotle/src/util/utils.dart';
 
 import '../game_logic/word.dart';
@@ -20,7 +16,8 @@ class PlayingPage extends StatefulWidget {
 }
 
 class PlayingPageState extends State<PlayingPage> {
-  final _controller = TextEditingController();
+  List<String> previousGuesses = [];
+  TextEditingController textEditController = TextEditingController();
   late Quote quote;
   late final String category;
   int _guessCount = 0;
@@ -34,47 +31,55 @@ class PlayingPageState extends State<PlayingPage> {
     category = widget.category;
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
   void _guessAttempt(String textInput) {
-    if (textInput.isEmpty) {
+    String guess = textInput
+        .toLowerCase()
+        .replaceAll(' ', '')
+        .replaceAll(Util.punctuationRegex, '')
+        .trim();
+
+    if (guess.isEmpty) {
+      //Case 1: Empty input, do nothing
       return;
     }
 
-    var guess = textInput
-        .toLowerCase()
-        .replaceAll(' ', '')
-        .replaceAll(Util.punctuationRegex, '');
-
     for (var quoteWord in quote.body) {
       var wordText = quoteWord.text.toLowerCase();
-      if (Util.isWordNear(guess, wordText)) {
-        //Check if word is near first.
+
+      if (previousGuesses.contains(guess)) {
+        return; // Case 2: Word is already guessed
+      } else if (Util.isWordNear(guess, wordText)) {
+        // Case 3: Word is near or correct
         quoteWord.setStatus(WordStatus.guessed);
       }
     }
 
+    Util.setHints(textInput, quote); // Case 4: Set hints
+
     setState(() {
+      previousGuesses.add(guess);
       _guessCount++;
+      if (Util.checkWinCondition(quote)) triggerWin();
     });
   }
 
   void _submitForm() {
-    if (_controller.text.isNotEmpty) {
-      _guessAttempt(_controller.text.toLowerCase());
-      _controller.clear();
+    if (textEditController.text.isNotEmpty) {
+      _guessAttempt(textEditController.text.toLowerCase());
+      textEditController.clear();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading ? _renderLoading() : _renderGame();
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    return _isLoading
+        ? _renderLoading(screenHeight, screenWidth)
+        : _renderGame(screenHeight, screenWidth);
   }
 
-  Widget _renderLoading() {
+  Widget _renderLoading(double screenHeight, double screenWidth) {
     _isLoading = false;
     return FutureBuilder<Quote>(
       future: Quote(
@@ -102,13 +107,13 @@ class PlayingPageState extends State<PlayingPage> {
           );
         } else {
           quote = snapshot.data!;
-          return _renderGame();
+          return _renderGame(screenHeight, screenWidth);
         }
       },
     );
   }
 
-  Widget _renderGame() {
+  Widget _renderGame(double screenHeight, double screenWidth) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Playing!'),
@@ -125,12 +130,15 @@ class PlayingPageState extends State<PlayingPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           QuoteContainer(quote: quote),
-          const SizedBox(height: 14.0),
+          SizedBox(
+            height: screenHeight * 0.02,
+          ),
           TextField(
-            controller: _controller,
+            controller: textEditController,
             enabled: _fieldEnabled,
             autocorrect: false,
             autofocus: true,
+            keyboardType: TextInputType.text,
             decoration: InputDecoration(
               labelText: 'Guess count : $_guessCount',
               border: const OutlineInputBorder(),
@@ -142,5 +150,11 @@ class PlayingPageState extends State<PlayingPage> {
         ],
       ),
     );
+  }
+
+  void triggerWin() {
+    setState(() {
+      _fieldEnabled = false;
+    });
   }
 }

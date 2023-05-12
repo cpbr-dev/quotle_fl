@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:quotle/src/game_logic/quote.dart';
 
@@ -9,6 +7,8 @@ class QuoteContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.center,
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -17,7 +17,8 @@ class QuoteContainer extends StatelessWidget {
         border: Border.all(color: Theme.of(context).colorScheme.tertiary),
         borderRadius: BorderRadius.circular(8),
       ),
-      height: window.devicePixelRatio * 120,
+      height: screenHeight * 0.3,
+      width: screenWidth * 0.9,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

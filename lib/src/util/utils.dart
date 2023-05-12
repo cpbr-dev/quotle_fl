@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:quotle/src/game_logic/quote.dart';
 import 'package:quotle/src/game_logic/word.dart';
 import 'package:quotle/src/util/endpoint.dart';
 
@@ -50,8 +51,8 @@ class Util {
     return quotes[random.nextInt(quotes.length)];
   }
 
-  static checkWinCondition(List<Word> words) {
-    for (var word in words) {
+  static checkWinCondition(Quote quote) {
+    for (var word in quote.body) {
       if (word.status != WordStatus.guessed) {
         return false;
       }
@@ -59,12 +60,13 @@ class Util {
     return true;
   }
 
-  static isWordInHints(String guess, List<Word> quote) async {
+  static setHints(String guess, Quote quote) async {
     List<String> closeWords = [];
     // Remove punctuation and spaces from guess
 
     String endpoint = '/proximity?word=$guess';
     var response = await Endpoint.apiRequest(endpoint);
+    if (response == null) return;
 
     for (var word in response) {
       closeWords.add(word['word']);
@@ -74,14 +76,13 @@ class Util {
     //If they are, we set the status of the word to hint, and the hint
     //to the word that we guessed.
 
-    for (var word in quote) {
+    for (var word in quote.body) {
+      if (word.status == WordStatus.guessed) continue;
       if (closeWords.contains(word.text)) {
         word.setStatus(WordStatus.hint);
         word.setWordHint(guess);
       }
     }
-
-    return true;
   }
 
   static isWordNear(String guess, String text) {
