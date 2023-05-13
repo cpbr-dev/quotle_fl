@@ -57,10 +57,10 @@ class MyAppState extends State<MyApp> {
         theme: theme,
         home: Scaffold(
           appBar: AppBar(),
-          body: MainMenu(),
+          body: const MainMenu(),
         ),
         routes: {
-          '/categories': (context) => CategorySelectPage(),
+          '/categories': (context) => const CategorySelectPage(),
           '/settings': (context) => SettingsPage(
                 onThemeChanged: _updateTheme,
                 mainSharedPreferences: widget.mainSharedPreferences,

@@ -42,12 +42,12 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
       ),
       body: Column(
         children: [
           SwitchListTile(
-            title: Text('Dark mode'),
+            title: const Text('Dark mode'),
             value: _isDarkMode,
             onChanged: _toggleDarkMode,
           )

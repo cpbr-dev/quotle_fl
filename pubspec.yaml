@@ -1,7 +1,7 @@
 name: quotle
 description: A Quote guessing game.
 publish_to: 'none'
-version: 0.1.0
+version: 0.2.0
 
 environment:
   sdk: '>=2.19.5 <3.0.0'
@@ -24,7 +24,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/icons/
     - assets/images/
     - assets/svg/
     - .env

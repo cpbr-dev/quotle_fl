@@ -11,10 +11,10 @@ class AboutPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('About'),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text(
               'Quotle',
               style: TextStyle(

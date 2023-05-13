@@ -38,8 +38,8 @@ class CategorySelectState extends State<CategorySelectPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Column(
-              children: const [
+            const Column(
+              children: [
                 SizedBox(height: 16),
                 Text(
                   'Choisissez une catégorie',
