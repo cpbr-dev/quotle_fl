@@ -1,7 +1,7 @@
 name: quotle
 description: A Quote guessing game.
 publish_to: 'none'
-version: 0.1.0
+version: 0.2.0
 
 environment:
   sdk: '>=2.19.5 <3.0.0'
@@ -13,6 +13,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   flutter_svg: ^2.0.5
   http: ^0.13.6
+  logging: ^1.1.1
   shared_preferences: ^2.1.0
 
 dev_dependencies:

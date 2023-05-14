@@ -1,9 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:quotle/src/Widgets/quote_container.dart';
 import 'package:quotle/src/game_logic/quote.dart';
 //import 'package:quotle/src/settings/settings.dart';
 import 'package:quotle/src/util/utils.dart';
-
 import '../game_logic/word.dart';
 
 class PlayingPage extends StatefulWidget {
@@ -16,6 +17,9 @@ class PlayingPage extends StatefulWidget {
 }
 
 class PlayingPageState extends State<PlayingPage> {
+  int elapsedTime = 0;
+  late Timer _timer;
+  bool _timerVisible = false;
   List<String> previousGuesses = [];
   TextEditingController textEditController = TextEditingController();
   late Quote quote;
@@ -23,12 +27,18 @@ class PlayingPageState extends State<PlayingPage> {
   int _guessCount = 0;
   bool _isLoading = true;
   // ignore: prefer_final_fields
-  bool _fieldEnabled = true;
+  bool _gameRunning = true;
 
   @override
   void initState() {
     super.initState();
     category = widget.category;
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   void _guessAttempt(String textInput) {
@@ -59,7 +69,11 @@ class PlayingPageState extends State<PlayingPage> {
     setState(() {
       previousGuesses.add(guess);
       _guessCount++;
-      if (Util.checkWinCondition(quote)) triggerWin();
+      if (Util.checkWinCondition(quote)) {
+        _stopTimer();
+        triggerWin();
+        _gameRunning = false;
+      }
     });
   }
 
@@ -87,11 +101,11 @@ class PlayingPageState extends State<PlayingPage> {
       ).generateQuote(),
       builder: (BuildContext context, AsyncSnapshot<Quote> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   CircularProgressIndicator(),
                   SizedBox(height: 16.0),
                   Text('Loading quote...'),
@@ -107,6 +121,7 @@ class PlayingPageState extends State<PlayingPage> {
           );
         } else {
           quote = snapshot.data!;
+          _startTimer();
           return _renderGame(screenHeight, screenWidth);
         }
       },
@@ -116,45 +131,126 @@ class PlayingPageState extends State<PlayingPage> {
   Widget _renderGame(double screenHeight, double screenWidth) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Playing!'),
+        title: Text(category),
         actions: [
+          Visibility(
+            visible: _timerVisible,
+            child: Text(
+              '${elapsedTime}s',
+              style: const TextStyle(fontSize: 18.0),
+            ),
+          ),
           IconButton(
-            icon: const Icon(Icons.settings),
+            icon: const Icon(Icons.timer),
             onPressed: () => {
-              //TODO: Allow access to settings
+              _timerVisible = !_timerVisible,
             },
           ),
         ],
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          QuoteContainer(quote: quote),
-          SizedBox(
-            height: screenHeight * 0.02,
-          ),
-          TextField(
-            controller: textEditController,
-            enabled: _fieldEnabled,
-            autocorrect: false,
-            autofocus: true,
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-              labelText: 'Guess count : $_guessCount',
-              border: const OutlineInputBorder(),
+          Flexible(
+            flex: 3,
+            child: Container(
+              decoration: BoxDecoration(
+                border:
+                    Border.all(color: Theme.of(context).colorScheme.primary),
+                borderRadius: BorderRadius.circular(32.0),
+              ),
+              width: screenWidth * 0.92,
+              height: screenHeight * 0.45,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Flexible(
+                    flex: 2,
+                    child: QuoteContainer(quote: quote),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Spacer(),
+                        Visibility(
+                          visible: _guessCount >= 50,
+                          child: Text(
+                            '~ ${quote.author}',
+                          ),
+                        ),
+                        const SizedBox(width: 32.0),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-            onEditingComplete: () => {
-              _submitForm(),
-            },
           ),
+          Flexible(
+            flex: 1,
+            child: TextField(
+              controller: textEditController,
+              enabled: _gameRunning,
+              autocorrect: false,
+              autofocus: true,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                labelText: 'Guess count : $_guessCount',
+                border: const OutlineInputBorder(),
+              ),
+              onEditingComplete: () => {
+                _submitForm(),
+              },
+            ),
+          )
         ],
       ),
     );
   }
 
-  void triggerWin() {
-    setState(() {
-      _fieldEnabled = false;
+  Future triggerWin() => showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: AlertDialog(
+              alignment: Alignment.center,
+              content: FractionallySizedBox(
+                  heightFactor: 0.5,
+                  widthFactor: 0.9,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('You found the quote in: $elapsedTime seconds!'),
+                      Text(quote.body.map((e) => e.text).join('')),
+                      Text('- ${quote.author}'),
+                    ],
+                  )),
+              actions: <Widget>[
+                ButtonBar(
+                  children: [
+                    TextButton(
+                        onPressed: () => Navigator.popUntil(
+                            context, ModalRoute.withName('/categories')),
+                        child: const Text('Return')),
+                  ],
+                ),
+              ]),
+        );
+      });
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        elapsedTime++;
+      });
     });
+  }
+
+  void _stopTimer() {
+    _timer.cancel();
   }
 }

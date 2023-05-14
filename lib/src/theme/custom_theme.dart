@@ -4,14 +4,14 @@ class CustomTheme {
   static final lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
-    primaryColor: Colors.purple,
+    primaryColor: Colors.red,
     scaffoldBackgroundColor: Colors.white,
     fontFamily: 'Montserrat',
     buttonTheme: ButtonThemeData(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18.0),
+        borderRadius: BorderRadius.circular(168.0),
       ),
-      buttonColor: Colors.purpleAccent,
+      buttonColor: Colors.amber,
     ),
   );
 

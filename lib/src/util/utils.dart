@@ -95,3 +95,4 @@ class Util {
         (text == guess.substring(0, guess.length - 1) && guess.endsWith('e')));
   }
 }
+
