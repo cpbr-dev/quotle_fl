@@ -14,5 +14,26 @@
     "aboutButton": "À propos",
     "@aboutButton": {
         "description": "Le bouton qui ouvre le menu À propos"
+    },
+    "categoryTitle": "Catégories",
+    "@categoryTitle": {
+        "description": "Titre de la page de sélection de catégorie"
+    },
+    "categoryText": "Choisissez une catégorie :",
+    "@categoryText": {
+        "description": "Texte de la page de sélection de catégorie"
+    },
+    "categoryName": "{category, select, Philosophy{Philosophie} Inspirational{Inspirationnel} Humor{Humour} Cinema{Cinéma} other{other}}",
+    "@categoryName": {
+        "description": "Noms des catégories",
+        "placeholders": {
+            "category": {
+            "type": "String"
+            }
+        }
+    },
+    "loadingText": "Chargement d'une citation ...",
+    "@loadingText": {
+        "description": "Texte de chargement"
     }
 }

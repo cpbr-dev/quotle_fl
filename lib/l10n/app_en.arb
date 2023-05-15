@@ -3,7 +3,7 @@
     "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
     },
-    "playButton": "Play Game!",
+    "playButton": "Play!",
     "@playButton": {
         "description": "The button that starts the game"
     },
@@ -14,5 +14,26 @@
     "aboutButton": "About",
     "@aboutButton": {
         "description": "The button that opens the about menu"
+    },
+    "categoryTitle": "Categories",
+    "@categoryTitle": {
+        "description": "Screen title for the category selection screen"
+    },
+    "categoryText": "Pick a category :",
+    "@categoryText": {
+        "description": "Text that tells the user to pick a category"
+    },
+    "categoryName": "{category, select, Philosophy{Philosophy} Inspirational{Inspirational} Humor{Humor} Cinema{Cinema} other{other}}",
+    "@categoryName": {
+        "description": "Category names",
+        "placeholders": {
+            "category": {
+            "type": "String"
+            }
+        }
+    },
+    "loadingText": "Loading a quote ...",
+    "@loadingText": {
+        "description": "Loading text that appears when the app is loading a quote"
     }
 }

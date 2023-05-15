@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:quotle/src/Widgets/quote_container.dart';
 import 'package:quotle/src/game_logic/quote.dart';
 //import 'package:quotle/src/settings/settings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:quotle/src/util/utils.dart';
 import '../game_logic/word.dart';
 
@@ -101,14 +102,14 @@ class PlayingPageState extends State<PlayingPage> {
       ).generateQuote(),
       builder: (BuildContext context, AsyncSnapshot<Quote> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
+          return Scaffold(
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircularProgressIndicator(),
-                  SizedBox(height: 16.0),
-                  Text('Loading quote...'),
+                  const CircularProgressIndicator(),
+                  const SizedBox(height: 16.0),
+                  Text(AppLocalizations.of(context)!.loadingText),
                 ],
               ),
             ),
@@ -131,7 +132,7 @@ class PlayingPageState extends State<PlayingPage> {
   Widget _renderGame(double screenHeight, double screenWidth) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(category),
+        title: Text(AppLocalizations.of(context)!.categoryName(category)),
         actions: [
           Visibility(
             visible: _timerVisible,
