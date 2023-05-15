@@ -1,0 +1,18 @@
+{
+    "helloWorld": "Bonjour monde!",
+    "@helloWorld": {
+    "description": "The conventional newborn programmer greeting"
+    },
+    "playButton": "Jouer",
+    "@playButton": {
+        "description": "Le bouton qui lance le jeu"
+    },
+    "settingsButton": "Paramètres",
+    "@settingsButton": {
+        "description": "Le bouton qui ouvre le menu Paramètres"
+    },
+    "aboutButton": "À propos",
+    "@aboutButton": {
+        "description": "Le bouton qui ouvre le menu À propos"
+    }
+}

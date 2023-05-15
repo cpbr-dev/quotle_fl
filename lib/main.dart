@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:quotle/src/main_menu.dart';
 import 'package:quotle/src/settings/settings.dart';
@@ -53,7 +55,9 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     final theme = _isDarkMode ? CustomTheme.darkTheme : CustomTheme.lightTheme;
     return MaterialApp(
-        title: 'Quotle Game',
+        title: 'Quotle',
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: theme,
         home: Scaffold(
           appBar: AppBar(),
