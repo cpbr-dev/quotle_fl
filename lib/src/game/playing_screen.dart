@@ -102,7 +102,7 @@ class PlayingPageState extends State<PlayingPage> {
       ).generateQuote(),
       builder: (BuildContext context, AsyncSnapshot<Quote> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Scaffold(
+          return Scaffold(
             body: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
