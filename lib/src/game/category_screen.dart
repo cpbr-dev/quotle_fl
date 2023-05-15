@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quotle/src/Widgets/category_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CategorySelectPage extends StatefulWidget {
   const CategorySelectPage({super.key});
@@ -32,18 +33,18 @@ class CategorySelectState extends State<CategorySelectPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Categories'),
+        title: Text(AppLocalizations.of(context)!.categoryTitle),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Column(
+            Column(
               children: [
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text(
-                  'Choisissez une catégorie',
-                  style: TextStyle(
+                  AppLocalizations.of(context)!.categoryText,
+                  style: const TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 24,
                     fontWeight: FontWeight.bold,

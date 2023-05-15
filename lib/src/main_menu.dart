@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -66,21 +67,21 @@ class MainMenuState extends State<MainMenu>
                   onPressed: () {
                     Navigator.pushNamed(context, '/categories');
                   },
-                  child: const Text('Play Game'),
+                  child: Text(AppLocalizations.of(context)!.playButton),
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/settings');
                   },
-                  child: const Text('Settings'),
+                  child: Text(AppLocalizations.of(context)!.settingsButton),
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/about');
                   },
-                  child: const Text('About'),
+                  child: Text(AppLocalizations.of(context)!.aboutButton),
                 ),
               ],
             ),

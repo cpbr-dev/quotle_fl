@@ -16,6 +16,7 @@ class Endpoint {
       return data;
     } else {
       //Log error.
+      return jsonEncode('An error occured.');
     }
   }
 }
