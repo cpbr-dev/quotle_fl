@@ -293,6 +293,6 @@ class PlayingPageState extends State<PlayingPage> {
   void _shareResult() {
     String shareText = AppLocalizations.of(context)!
         .shareContent(quote.author, Util.formatDuration(elapsedTime));
-    Share.share('$shareText \nhttps://munstermc.github.io/');
+    Share.share('$shareText\nhttps://munstermc.github.io/');
   }
 }

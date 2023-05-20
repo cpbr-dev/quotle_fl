@@ -10,6 +10,8 @@ import 'package:quotle/src/theme/custom_theme.dart';
 import 'package:quotle/src/pages/playing_page.dart';
 import 'package:quotle/src/pages/about_page.dart';
 
+import 'src/classes/language_constants.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences mainSharedPreferences =
@@ -61,6 +63,12 @@ class MyAppState extends State<MyApp> {
       _isDarkMode = isDarkMode;
     });
     widget.mainSharedPreferences.setBool('isDarkMode', isDarkMode);
+  }
+
+  @override
+  void didChangeDependencies() {
+    getLocale().then((locale) => {setLocale(locale)});
+    super.didChangeDependencies();
   }
 
   @override
