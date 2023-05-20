@@ -76,5 +76,17 @@
     "dataCreditsText": "Data by Jean-Philippe Fauconnier",
     "@dataCreditsText": {
         "description": "Text that shows the credits for the data used in the app"
+    },
+    "returnText": "Return",
+    "@returnText": {
+        "description": "Return button text"
+    },
+    "shareContent": "I discovered a {category} quote in {time} ! \n Play Quotle :",
+    "@shareContent": {
+        "description": "Share content",
+        "placeholders": {
+            "category": {},
+            "time": {}
+        }
     }
 }

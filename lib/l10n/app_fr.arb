@@ -76,5 +76,17 @@
     "dataCreditsText": "Données par Jean-Philippe Fauconnier",
     "@dataCreditsText": {
         "description": "Texte qui affiche les crédits des données sémantiques"
+    },
+    "returnText": "Retour",
+    "@returnText": {
+        "description": "Texte du bouton qui retourne à la page précédente"
+    },
+    "shareContent": "J'ai découvert une citation de {category} en {time} ! \n Jouez à Quotle :",
+    "@shareContent": {
+        "description": "Contenu du partage",
+        "placeholders": {
+            "category": {},
+            "time": {}
+        }
     }
 }

@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quotle/src/Widgets/quote_container.dart';
 import 'package:quotle/src/classes/quote.dart';
 //import 'package:quotle/src/settings/settings.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:quotle/src/util/utils.dart';
 import '../classes/word.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PlayingPage extends StatefulWidget {
   final String category;
@@ -242,7 +244,16 @@ class PlayingPageState extends State<PlayingPage> {
                   children: [
                     Text(AppLocalizations.of(context)!
                         .endGameText(Util.formatDuration(elapsedTime))),
-                    Text(quote.body.map((e) => e.text).join('')),
+                    Flexible(
+                      child: Text(
+                        quote.body.map((e) => e.text).join(''),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                     Text('- ${quote.author}'),
                   ],
                 ),
@@ -253,7 +264,14 @@ class PlayingPageState extends State<PlayingPage> {
                     TextButton(
                         onPressed: () => Navigator.popUntil(
                             context, ModalRoute.withName('/categories')),
-                        child: const Text('Return')),
+                        child: Text(AppLocalizations.of(context)!.returnText)),
+                    IconButton(
+                      onPressed: _shareResult,
+                      icon: FaIcon(
+                        FontAwesomeIcons.shareNodes,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
+                    ),
                   ],
                 ),
               ]),
@@ -270,5 +288,11 @@ class PlayingPageState extends State<PlayingPage> {
 
   void _stopTimer() {
     _timer.cancel();
+  }
+
+  void _shareResult() {
+    String shareText = AppLocalizations.of(context)!
+        .shareContent(quote.author, Util.formatDuration(elapsedTime));
+    Share.share('$shareText \nhttps://munstermc.github.io/');
   }
 }
