@@ -72,5 +72,9 @@
         "placeholders": {
             "tries": {}
         }
+    },
+    "dataCreditsText": "Data by Jean-Philippe Fauconnier",
+    "@dataCreditsText": {
+        "description": "Text that shows the credits for the data used in the app"
     }
 }

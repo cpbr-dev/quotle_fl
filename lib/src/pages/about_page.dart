@@ -79,7 +79,22 @@ class AboutPage extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
+            Flexible(
+              flex: 1,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(AppLocalizations.of(context)!.dataCreditsText),
+                  IconButton(
+                    onPressed: () => {
+                      _launchURL('https://fauconnier.github.io/'),
+                    },
+                    icon: const FaIcon(FontAwesomeIcons.githubAlt),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

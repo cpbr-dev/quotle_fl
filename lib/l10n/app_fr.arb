@@ -62,7 +62,7 @@
     "@aboutTextContent": {
         "description": "Contenu de la page À propos"
     },
-    "aboutTextContent2": "Retrouvez d'autres projets sur mon site web :",
+    "aboutTextContent2": "Retrouvez d'autres projets sur mon site :",
     "@aboutTextContent": {
         "description": "Contenu 2 de la page À propos"
     },
@@ -72,5 +72,9 @@
         "placeholders": {
             "tries": {}
         }
+    },
+    "dataCreditsText": "Données par Jean-Philippe Fauconnier",
+    "@dataCreditsText": {
+        "description": "Texte qui affiche les crédits des données sémantiques"
     }
 }
