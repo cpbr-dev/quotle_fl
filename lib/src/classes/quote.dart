@@ -1,4 +1,4 @@
-import 'package:quotle/src/game_logic/word.dart';
+import 'package:quotle/src/classes/word.dart';
 import 'package:quotle/src/util/utils.dart';
 import 'package:quotle/src/util/endpoint.dart';
 

@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:quotle/src/Widgets/quote_container.dart';
-import 'package:quotle/src/game_logic/quote.dart';
+import 'package:quotle/src/classes/quote.dart';
 //import 'package:quotle/src/settings/settings.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:quotle/src/util/utils.dart';
-import '../game_logic/word.dart';
+import '../classes/word.dart';
 
 class PlayingPage extends StatefulWidget {
   final String category;
@@ -137,7 +137,7 @@ class PlayingPageState extends State<PlayingPage> {
           Visibility(
             visible: _timerVisible,
             child: Text(
-              '${elapsedTime}s',
+              Util.formatDuration(elapsedTime),
               style: const TextStyle(fontSize: 18.0),
             ),
           ),
@@ -181,6 +181,13 @@ class PlayingPageState extends State<PlayingPage> {
                             '~ ${quote.author}',
                           ),
                         ),
+                        Visibility(
+                          visible: _guessCount < 50,
+                          child: Text(
+                            AppLocalizations.of(context)!
+                                .hintText(50 - _guessCount),
+                          ),
+                        ),
                         const SizedBox(width: 32.0),
                       ],
                     ),
@@ -192,14 +199,22 @@ class PlayingPageState extends State<PlayingPage> {
           Flexible(
             flex: 1,
             child: TextField(
+              cursorColor: Theme.of(context).colorScheme.primary,
               controller: textEditController,
               enabled: _gameRunning,
               autocorrect: false,
               autofocus: true,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                labelText: 'Guess count : $_guessCount',
-                border: const OutlineInputBorder(),
+                labelText:
+                    AppLocalizations.of(context)!.guessCounterText(_guessCount),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(18.0)),
+                ),
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: screenHeight * 0.02,
+                  horizontal: screenWidth * 0.04,
+                ),
               ),
               onEditingComplete: () => {
                 _submitForm(),
@@ -220,16 +235,18 @@ class PlayingPageState extends State<PlayingPage> {
           child: AlertDialog(
               alignment: Alignment.center,
               content: FractionallySizedBox(
-                  heightFactor: 0.5,
-                  widthFactor: 0.9,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text('You found the quote in: $elapsedTime seconds!'),
-                      Text(quote.body.map((e) => e.text).join('')),
-                      Text('- ${quote.author}'),
-                    ],
-                  )),
+                heightFactor: 0.4,
+                widthFactor: 0.9,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(AppLocalizations.of(context)!
+                        .endGameText(Util.formatDuration(elapsedTime))),
+                    Text(quote.body.map((e) => e.text).join('')),
+                    Text('- ${quote.author}'),
+                  ],
+                ),
+              ),
               actions: <Widget>[
                 ButtonBar(
                   children: [

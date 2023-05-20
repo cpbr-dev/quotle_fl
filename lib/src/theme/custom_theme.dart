@@ -1,32 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:quotle/src/theme/theme_colors.g.dart';
 
 class CustomTheme {
   static final lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
-    primaryColor: Colors.red,
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: lightColorScheme.background,
     fontFamily: 'Montserrat',
-    buttonTheme: ButtonThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(168.0),
-      ),
-      buttonColor: Colors.amber,
-    ),
+    colorScheme: lightColorScheme,
   );
 
   static final darkTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
-    primaryColor: Colors.deepOrange,
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: darkColorScheme.background,
     fontFamily: 'Montserrat',
-    buttonTheme: ButtonThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18.0),
-      ),
-      buttonColor: Colors.deepOrangeAccent,
-    ),
+    colorScheme: darkColorScheme,
   );
 
   static ThemeData getTheme(bool isDarkMode) {

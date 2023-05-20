@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quotle/src/game_logic/quote.dart';
+import 'package:quotle/src/classes/quote.dart';
 
 // ignore: must_be_immutable
 class QuoteContainer extends StatelessWidget {

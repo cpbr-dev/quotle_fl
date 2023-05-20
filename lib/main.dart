@@ -3,12 +3,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:quotle/src/main_menu.dart';
-import 'package:quotle/src/settings/settings.dart';
-import 'package:quotle/src/game/category_screen.dart';
+import 'package:quotle/src/pages/menu_page.dart';
+import 'package:quotle/src/pages/settings_page.dart';
+import 'package:quotle/src/pages/category_page.dart';
 import 'package:quotle/src/theme/custom_theme.dart';
-import 'package:quotle/src/game/playing_screen.dart';
-import 'package:quotle/src/other/about_page.dart';
+import 'package:quotle/src/pages/playing_page.dart';
+import 'package:quotle/src/pages/about_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,11 +24,24 @@ class MyApp extends StatefulWidget {
   const MyApp({Key? key, required this.mainSharedPreferences})
       : super(key: key);
 
+  static void setLocale(BuildContext context, Locale newLocale) {
+    MyAppState? state = context.findAncestorStateOfType<MyAppState>();
+    state?.setLocale(newLocale);
+  }
+
   @override
   MyAppState createState() => MyAppState();
 }
 
 class MyAppState extends State<MyApp> {
+  Locale? _locale;
+
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
   bool _isDarkMode = false;
 
   @override
@@ -57,6 +70,7 @@ class MyAppState extends State<MyApp> {
         title: 'Quotle',
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
+        locale: _locale,
         theme: theme,
         home: Scaffold(
           appBar: AppBar(),

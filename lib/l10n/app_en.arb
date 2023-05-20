@@ -11,6 +11,10 @@
     "@settingsButton": {
         "description": "The button that opens the settings menu"
     },
+    "darkModeText": "Dark mode",
+    "@darkModeText": {
+        "description": "Text that tells the user that dark mode is enabled"
+    },
     "aboutButton": "About",
     "@aboutButton": {
         "description": "The button that opens the about menu"
@@ -35,5 +39,38 @@
     "loadingText": "Loading a quote ...",
     "@loadingText": {
         "description": "Loading text that appears when the app is loading a quote"
+    },
+    "endGameText": "You found the full quote in {time} !",
+    "@endGameText": {
+        "description": "Text that appears when the user has won",
+        "placeholders": {
+            "time": {}
+        }
+    },
+    "guessCounterText": "Guesses : {guesses}",
+    "@guessCounterText": {
+        "description": "Text that shows the number of guesses made",
+        "placeholders": {
+            "guesses": {}
+        }
+    },
+    "changeLanguage" : "Change language",
+    "@changeLanguage": {
+        "description": "Text that tells the user to change the language"
+    },
+    "aboutTextContent": "This game was developped by Messaoud Nael, a student at ENSIM, Le Mans.",
+    "@aboutTextContent": {
+        "description": "Contenu de la page À propos"
+    },
+    "aboutTextContent2": "Find more projects on my website :",
+    "@aboutTextContent": {
+        "description": "Contenu 2 de la page À propos"
+    },
+    "hintText": "Author in {tries} attempts.",
+    "@hintText": {
+        "description": "Text that shows the number of attempts left to get a hint",
+        "placeholders": {
+            "tries": {}
+        }
     }
 }

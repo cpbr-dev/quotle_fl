@@ -69,9 +69,10 @@ class WordState extends State<Word> {
             padding: isPunctuation ? _getPaddingPunctuation() : _getPadding(),
             child: Text(
               _getWordText(),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.normal,
+                color: _getTextColor(),
               ),
             ),
           ),
@@ -113,6 +114,17 @@ class WordState extends State<Word> {
             color: Theme.of(context).colorScheme.primaryContainer);
       case WordStatus.guessed:
         return const BoxDecoration();
+    }
+  }
+
+  _getTextColor() {
+    switch (status) {
+      case WordStatus.hint:
+        return Theme.of(context).colorScheme.outline;
+      case WordStatus.length:
+        return Theme.of(context).colorScheme.onPrimaryContainer;
+      case WordStatus.guessed:
+        return Theme.of(context).colorScheme.onBackground;
     }
   }
 

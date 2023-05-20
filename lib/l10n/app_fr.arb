@@ -11,6 +11,10 @@
     "@settingsButton": {
         "description": "Le bouton qui ouvre le menu Paramètres"
     },
+    "darkModeText": "Thème sombre",
+    "@darkModeText": {
+        "description": "Texte du thème sombre"
+    },
     "aboutButton": "À propos",
     "@aboutButton": {
         "description": "Le bouton qui ouvre le menu À propos"
@@ -35,5 +39,38 @@
     "loadingText": "Chargement d'une citation ...",
     "@loadingText": {
         "description": "Texte de chargement"
+    },
+    "endGameText": "Vous avez découvert la citation en {time} !",
+    "@endGameText": {
+        "description": "Texte qui apparaît à la fin du jeu",
+        "placeholders": {
+            "time": {}
+        }
+    },
+    "guessCounterText": "Tentatives : {guesses}",
+    "@guessCounterText": {
+        "description": "Texte qui affiche le nombre de tentatives",
+        "placeholders": {
+            "guesses": {}
+        }
+    },
+    "changeLanguage" : "Changer de langue",
+    "@changeLanguage": {
+        "description": "Texte du bouton qui change la langue"
+    },
+    "aboutTextContent": "Ce jeu a été développé par Messaoud Nael, un étudiant de l'ENSIM au Mans.",
+    "@aboutTextContent": {
+        "description": "Contenu de la page À propos"
+    },
+    "aboutTextContent2": "Retrouvez d'autres projets sur mon site web :",
+    "@aboutTextContent": {
+        "description": "Contenu 2 de la page À propos"
+    },
+    "hintText": "Auteur dans {tries} essais.",
+    "@hintText": {
+        "description": "Texte qui affiche le nombre d'essais restants pour obtenir un indice",
+        "placeholders": {
+            "tries": {}
+        }
     }
 }

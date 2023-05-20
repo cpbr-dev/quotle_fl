@@ -1,12 +1,22 @@
 import 'dart:math';
 
-import 'package:quotle/src/game_logic/quote.dart';
-import 'package:quotle/src/game_logic/word.dart';
+import 'package:quotle/src/classes/quote.dart';
+import 'package:quotle/src/classes/word.dart';
 import 'package:quotle/src/util/endpoint.dart';
 
 class Util {
   static RegExp punctuationRegex =
       RegExp("\\.|,|;|:|!|\\?|\\(|\\)|\\[|\\]|\\{|\\}|\"|'");
+
+  static String formatDuration(int totalSeconds) {
+    final duration = Duration(seconds: totalSeconds);
+    final minutes = duration.inMinutes;
+    final seconds = totalSeconds % 60;
+
+    final minutesString = '$minutes'.padLeft(2, '0');
+    final secondsString = '$seconds'.padLeft(2, '0');
+    return '${minutesString}m${secondsString}s';
+  }
 
   static List<String> wordSanitizer(String inputString) {
     List<String> result = [];
@@ -95,4 +105,3 @@ class Util {
         (text == guess.substring(0, guess.length - 1) && guess.endsWith('e')));
   }
 }
-
