@@ -13,6 +13,7 @@ class CategorySelectPage extends StatefulWidget {
 
 class CategorySelectState extends State<CategorySelectPage> {
   List<String> categoryList = [
+    'Daily',
     'Philosophy',
     'Inspirational',
     'Humor',

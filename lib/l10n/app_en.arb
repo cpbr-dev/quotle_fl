@@ -1,8 +1,5 @@
 {
-    "helloWorld": "Hello World!",
-    "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-    },
+    "currentLanguage": "English",
     "playButton": "Play!",
     "@playButton": {
         "description": "The button that starts the game"
@@ -27,7 +24,7 @@
     "@categoryText": {
         "description": "Text that tells the user to pick a category"
     },
-    "categoryName": "{category, select, Philosophy{Philosophy} Inspirational{Inspirational} Humor{Humor} Cinema{Cinema} other{other}}",
+    "categoryName": "{category, select, Philosophy{Philosophy} Inspirational{Inspirational} Humor{Humor} Cinema{Cinema} Daily{🔮 Quotle of the day} other{other}}",
     "@categoryName": {
         "description": "Category names",
         "placeholders": {
@@ -58,7 +55,7 @@
     "@changeLanguage": {
         "description": "Text that tells the user to change the language"
     },
-    "aboutTextContent": "This game was developped by Messaoud Nael, a student at ENSIM, Le Mans.",
+    "aboutTextContent": "This game was developped by Nael Messaoud, a student at ENSIM, Le Mans.",
     "@aboutTextContent": {
         "description": "Contenu de la page À propos"
     },
@@ -88,5 +85,9 @@
             "category": {},
             "time": {}
         }
+    },
+    "errorText": "An error occured. Please try again later.",
+    "@errorText": {
+        "description": "Text that appears when an error occurs"
     }
 }

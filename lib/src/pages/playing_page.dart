@@ -116,10 +116,36 @@ class PlayingPageState extends State<PlayingPage> {
               ),
             ),
           );
-        } else if (snapshot.hasError) {
+        } else if (snapshot.hasError || snapshot.data?.author.isEmpty == true) {
+          _timer = Timer(const Duration(seconds: 0),
+              () {}); // Timer needs to be initialized
+          quote = Quote(category: "None");
           return Scaffold(
             body: Center(
-              child: Text('Error: ${snapshot.error}'),
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.triangleExclamation,
+                      size: 128.0,
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                    Text(AppLocalizations.of(context)!.errorText),
+                    TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Theme.of(context).colorScheme.errorContainer),
+                          fixedSize: MaterialStateProperty.all<Size>(
+                              const Size(128.0, 48.0)),
+                        ),
+                        onPressed: () => Navigator.popUntil(
+                            context, ModalRoute.withName('/categories')),
+                        child: Text(AppLocalizations.of(context)!.returnText)),
+                  ],
+                ),
+              ),
             ),
           );
         } else {
@@ -200,27 +226,33 @@ class PlayingPageState extends State<PlayingPage> {
           ),
           Flexible(
             flex: 1,
-            child: TextField(
-              cursorColor: Theme.of(context).colorScheme.primary,
-              controller: textEditController,
-              enabled: _gameRunning,
-              autocorrect: false,
-              autofocus: true,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText:
-                    AppLocalizations.of(context)!.guessCounterText(_guessCount),
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(18.0)),
-                ),
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: screenHeight * 0.02,
-                  horizontal: screenWidth * 0.04,
-                ),
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                vertical: screenHeight * 0.02,
+                horizontal: screenWidth * 0.04,
               ),
-              onEditingComplete: () => {
-                _submitForm(),
-              },
+              child: TextField(
+                cursorColor: Theme.of(context).colorScheme.primary,
+                controller: textEditController,
+                enabled: _gameRunning,
+                autocorrect: false,
+                autofocus: true,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!
+                      .guessCounterText(_guessCount),
+                  border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18.0)),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: screenHeight * 0.02,
+                    horizontal: screenWidth * 0.04,
+                  ),
+                ),
+                onEditingComplete: () => {
+                  _submitForm(),
+                },
+              ),
             ),
           )
         ],

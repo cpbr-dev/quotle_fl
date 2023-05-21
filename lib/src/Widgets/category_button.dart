@@ -11,11 +11,14 @@ class CategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () async {
-        await Navigator.pushNamed(context, '/loading', arguments: category);
-      },
-      child: Text(AppLocalizations.of(context)!.categoryName(category)),
+    return Container(
+      padding: const EdgeInsetsDirectional.only(bottom: 16, top: 16),
+      child: ElevatedButton(
+        onPressed: () async {
+          await Navigator.pushNamed(context, '/loading', arguments: category);
+        },
+        child: Text(AppLocalizations.of(context)!.categoryName(category)),
+      ),
     );
   }
 }

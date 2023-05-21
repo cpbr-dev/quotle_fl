@@ -57,7 +57,11 @@ class Util {
 
   static pickRandomQuote(List quotes) {
     var random = Random();
-
+    if (quotes.isEmpty) {
+      return null;
+    } else if (quotes.length == 1) {
+      return quotes[0];
+    }
     return quotes[random.nextInt(quotes.length)];
   }
 

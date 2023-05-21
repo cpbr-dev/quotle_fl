@@ -51,38 +51,61 @@ class SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.settingsButton),
       ),
-      body: Column(
-        children: [
-          SwitchListTile(
-            title: Text(AppLocalizations.of(context)!.darkModeText),
-            value: _isDarkMode,
-            onChanged: _toggleDarkMode,
-          ),
-          DropdownButton<Language>(
-            iconSize: 30,
-            hint: Text(translation(context).changeLanguage),
-            onChanged: (Language? language) async {
-              if (language != null) {
-                Locale locale = await setLocale(language.languageCode);
-                // ignore: use_build_context_synchronously
-                MyApp.setLocale(context, locale);
-              }
-            },
-            items: Language.languageList()
-                .map<DropdownMenuItem<Language>>(
-                  (e) => DropdownMenuItem<Language>(
-                    value: e,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text(e.name),
-                      ],
+      body: Container(
+        padding: const EdgeInsetsDirectional.all(16),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: SwitchListTile(
+                title: Text(AppLocalizations.of(context)!.darkModeText),
+                value: _isDarkMode,
+                onChanged: _toggleDarkMode,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Text(
+                    translation(context).changeLanguage,
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
                     ),
                   ),
-                )
-                .toList(),
-          )
-        ],
+                ),
+                DropdownButton<Language>(
+                  padding: const EdgeInsets.only(right: 16),
+                  iconSize: 30,
+                  hint: Text(translation(context).currentLanguage),
+                  onChanged: (Language? language) async {
+                    if (language != null) {
+                      Locale locale = await setLocale(language.languageCode);
+                      // ignore: use_build_context_synchronously
+                      MyApp.setLocale(context, locale);
+                    }
+                  },
+                  items: Language.languageList()
+                      .map<DropdownMenuItem<Language>>(
+                        (e) => DropdownMenuItem<Language>(
+                          value: e,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Text(e.name),
+                            ],
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

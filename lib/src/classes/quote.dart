@@ -16,6 +16,9 @@ class Quote {
     var response = await Endpoint.apiRequest(endpoint);
 
     var quote = Util.pickRandomQuote(response);
+    if (quote == null) {
+      return this;
+    }
     quoteBody = quote['mainText'];
     authorName = quote['author'];
 

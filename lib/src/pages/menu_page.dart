@@ -61,27 +61,37 @@ class MainMenuState extends State<MainMenu>
               ),
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/categories');
-                  },
-                  child: Text(AppLocalizations.of(context)!.playButton),
+                Container(
+                  padding:
+                      const EdgeInsetsDirectional.only(bottom: 16, top: 16),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/categories');
+                    },
+                    child: Text(AppLocalizations.of(context)!.playButton),
+                  ),
                 ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/settings');
-                  },
-                  child: Text(AppLocalizations.of(context)!.settingsButton),
+                Container(
+                  padding:
+                      const EdgeInsetsDirectional.only(bottom: 16, top: 16),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/settings');
+                    },
+                    child: Text(AppLocalizations.of(context)!.settingsButton),
+                  ),
                 ),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/about');
-                  },
-                  child: Text(AppLocalizations.of(context)!.aboutButton),
+                Container(
+                  padding:
+                      const EdgeInsetsDirectional.only(bottom: 16, top: 16),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/about');
+                    },
+                    child: Text(AppLocalizations.of(context)!.aboutButton),
+                  ),
                 ),
               ],
             ),
