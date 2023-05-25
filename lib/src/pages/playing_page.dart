@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:math';
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -38,9 +40,14 @@ class PlayingPageState extends State<PlayingPage> {
   bool _gameRunning = true;
   late SharedPreferences _mainSharedPref;
 
+  //Confetti
+  late ConfettiController _controllerCenter;
+
   @override
   void initState() {
     super.initState();
+    _controllerCenter =
+        ConfettiController(duration: const Duration(seconds: 2));
     category = widget.category;
     _mainSharedPref = widget.mainSharedPreferences;
   }
@@ -48,6 +55,7 @@ class PlayingPageState extends State<PlayingPage> {
   @override
   void dispose() {
     _timer.cancel();
+    _controllerCenter.dispose();
     super.dispose();
   }
 
@@ -88,6 +96,7 @@ class PlayingPageState extends State<PlayingPage> {
         _mainSharedPref.setInt(
             'totalGames', 1 + _mainSharedPref.getInt('totalGames')!);
         triggerWin();
+        spawnConffeti();
         _gameRunning = false;
       }
     });
@@ -285,6 +294,16 @@ class PlayingPageState extends State<PlayingPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    ConfettiWidget(
+                      confettiController: _controllerCenter,
+                      blastDirectionality: BlastDirectionality.directional,
+                      blastDirection: -pi / 2,
+                      emissionFrequency: 0.05,
+                      numberOfParticles: 20,
+                      gravity: 0.1,
+                      maxBlastForce: 20,
+                      shouldLoop: false,
+                    ),
                     Text(
                       AppLocalizations.of(context)!
                           .endGameText(Util.formatDuration(elapsedTime)),
@@ -339,5 +358,9 @@ class PlayingPageState extends State<PlayingPage> {
     String shareText = AppLocalizations.of(context)!
         .shareContent(quote.author, Util.formatDuration(elapsedTime));
     Share.share('$shareText\nhttps://munstermc.github.io/');
+  }
+
+  void spawnConffeti() {
+    _controllerCenter.play();
   }
 }
