@@ -14,7 +14,7 @@ class HelpPage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: const Column(
           children: [
-            Text('Yo'),
+            Text('Page under construction...'),
           ],
         ),
       ),

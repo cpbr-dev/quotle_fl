@@ -21,7 +21,7 @@ class PlayingPage extends StatefulWidget {
 
 class PlayingPageState extends State<PlayingPage> {
   int elapsedTime = 0;
-  late Timer _timer;
+  Timer _timer = Timer(const Duration(seconds: 0), () {});
   bool _timerVisible = false;
   List<String> previousGuesses = [];
   TextEditingController textEditController = TextEditingController();
@@ -117,8 +117,6 @@ class PlayingPageState extends State<PlayingPage> {
             ),
           );
         } else if (snapshot.hasError || snapshot.data?.author.isEmpty == true) {
-          _timer = Timer(const Duration(seconds: 0),
-              () {}); // Timer needs to be initialized
           quote = Quote(category: "None");
           return Scaffold(
             body: Center(
