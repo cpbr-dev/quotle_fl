@@ -66,6 +66,17 @@ class MyAppState extends State<MyApp> {
     widget.mainSharedPreferences.setBool('isDarkMode', isDarkMode);
   }
 
+  void setupStats() {
+    widget.mainSharedPreferences.getInt('totalGames') ??
+        widget.mainSharedPreferences.setInt('totalGames', 0);
+    widget.mainSharedPreferences.getInt('totalWins') ??
+        widget.mainSharedPreferences.setInt('totalWins', 0);
+    widget.mainSharedPreferences.getInt('totalTime') ??
+        widget.mainSharedPreferences.setInt('totalTime', 0);
+    widget.mainSharedPreferences.getInt('totalGuesses') ??
+        widget.mainSharedPreferences.setInt('totalGuesses', 0);
+  }
+
   @override
   void didChangeDependencies() {
     getLocale().then((locale) => {setLocale(locale)});
@@ -74,6 +85,7 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    setupStats();
     final theme = _isDarkMode ? CustomTheme.darkTheme : CustomTheme.lightTheme;
     return MaterialApp(
         title: 'Quotle',
@@ -91,11 +103,13 @@ class MyAppState extends State<MyApp> {
                 onThemeChanged: _updateTheme,
                 mainSharedPreferences: widget.mainSharedPreferences,
               ),
-          '/loading': (context) => PlayingPage(
+          '/playing': (context) => PlayingPage(
                 category: ModalRoute.of(context)!.settings.arguments as String,
+                mainSharedPreferences: widget.mainSharedPreferences,
               ),
           '/about': (context) => const AboutPage(),
-          '/stats': (context) => const StatisticPage(),
+          '/stats': (context) => StatisticPage(
+              mainSharedPreferences: widget.mainSharedPreferences),
         });
   }
 }

@@ -99,11 +99,39 @@
         "description": "Explanation of the game"
     },
     "statisticTitle": "Statistics",
-    "statisticText": "Number of games played : {gamesPlayed}",
-    "@statisticText": {
-        "description": "Text that shows the number of games played",
+    "statisticTotalGames": "Total games completed : {totalGames}",
+    "@statisticTotalGames": {
+        "description": "Text that shows the total number of games played",
         "placeholders": {
-            "gamesPlayed": {}
+            "totalGames": {}
+        }
+    },
+    "statisticTotalGuesses": "Total guesses : {totalGuesses}",
+    "@statisticTotalGuesses": {
+        "description": "Text that shows the total number of guesses",
+        "placeholders": {
+            "totalGuesses": {}
+        }
+    },
+    "statisticTotalTime": "Total time played : {totalTime}",
+    "@statisticTotalTime": {
+        "description": "Text that shows the total time played",
+        "placeholders": {
+            "totalTime": {}
+        }
+    },
+    "statisticAverageTime": "Average time per game : {averageTime}",
+    "@statisticAverageTime": {
+        "description": "Text that shows the average time per game",
+        "placeholders": {
+            "averageTime": {}
+        }
+    },
+    "statisticAverageGuesses": "Average guesses per game : {averageGuesses}",
+    "@statisticAverageGuesses": {
+        "description": "Text that shows the average number of guesses per game",
+        "placeholders": {
+            "averageGuesses": {}
         }
     }
 }

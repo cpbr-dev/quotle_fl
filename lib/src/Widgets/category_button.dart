@@ -15,7 +15,7 @@ class CategoryButton extends StatelessWidget {
       padding: const EdgeInsetsDirectional.only(bottom: 16, top: 16),
       child: ElevatedButton(
         onPressed: () async {
-          await Navigator.pushNamed(context, '/loading', arguments: category);
+          await Navigator.pushNamed(context, '/playing', arguments: category);
         },
         child: Text(AppLocalizations.of(context)!.categoryName(category)),
       ),

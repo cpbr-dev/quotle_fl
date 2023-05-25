@@ -99,11 +99,39 @@
         "description": "Explication du jeu"
     },
     "statisticTitle": "Statistiques",
-    "statisticText": "Nombre de parties jouées : {gamesPlayed}",
-    "@statisticText": {
-        "description": "Texte qui affiche le nombre de parties jouées",
+    "statisticTotalGames": "Nombre total de parties : {totalGames}",
+    "@statisticTotalGames": {
+        "description": "Text that shows the total number of games played",
         "placeholders": {
-            "gamesPlayed": {}
+            "totalGames": {}
+        }
+    },
+    "statisticTotalGuesses": "Nombre total de tentatives : {totalGuesses}",
+    "@statisticTotalGuesses": {
+        "description": "Text that shows the total number of guesses",
+        "placeholders": {
+            "totalGuesses": {}
+        }
+    },
+    "statisticTotalTime": "Temps de jeu total : {totalTime}",
+    "@statisticTotalTime": {
+        "description": "Text that shows the total time played",
+        "placeholders": {
+            "totalTime": {}
+        }
+    },
+    "statisticAverageTime": "Temps moyen par partie : {averageTime}",
+    "@statisticAverageTime": {
+        "description": "Text that shows the average time per game",
+        "placeholders": {
+            "averageTime": {}
+        }
+    },
+    "statisticAverageGuesses": "Nombre moyen de tentatives par partie : {averageGuesses}",
+    "@statisticAverageGuesses": {
+        "description": "Text that shows the average number of guesses per game",
+        "placeholders": {
+            "averageGuesses": {}
         }
     }
 }

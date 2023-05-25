@@ -18,6 +18,20 @@ class Util {
     return '${minutesString}m${secondsString}s';
   }
 
+  static String formatDurationHours(int totalSeconds) {
+    final duration = Duration(seconds: totalSeconds);
+
+    final hours = duration.inHours;
+    final minutes = duration.inMinutes.remainder(60);
+    final seconds = totalSeconds % 60;
+
+    final hoursString = '$hours'.padLeft(2, '0');
+    final minutesString = '$minutes'.padLeft(2, '0');
+    final secondsString = '$seconds'.padLeft(2, '0');
+
+    return '${hoursString}h${minutesString}m${secondsString}s';
+  }
+
   static List<String> wordSanitizer(String inputString) {
     List<String> result = [];
     int startIndex = 0;

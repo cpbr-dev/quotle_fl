@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quotle/src/Widgets/quote_container.dart';
 import 'package:quotle/src/classes/quote.dart';
@@ -12,8 +12,13 @@ import 'package:share_plus/share_plus.dart';
 
 class PlayingPage extends StatefulWidget {
   final String category;
+  final SharedPreferences mainSharedPreferences;
 
-  const PlayingPage({super.key, required this.category});
+  const PlayingPage({
+    super.key,
+    required this.category,
+    required this.mainSharedPreferences,
+  });
 
   @override
   PlayingPageState createState() => PlayingPageState();
@@ -31,11 +36,13 @@ class PlayingPageState extends State<PlayingPage> {
   bool _isLoading = true;
   // ignore: prefer_final_fields
   bool _gameRunning = true;
+  late SharedPreferences _mainSharedPref;
 
   @override
   void initState() {
     super.initState();
     category = widget.category;
+    _mainSharedPref = widget.mainSharedPreferences;
   }
 
   @override
@@ -74,6 +81,12 @@ class PlayingPageState extends State<PlayingPage> {
       _guessCount++;
       if (Util.checkWinCondition(quote)) {
         _stopTimer();
+        _mainSharedPref.setInt('totalGuesses',
+            _mainSharedPref.getInt('totalGuesses')! + _guessCount);
+        _mainSharedPref.setInt(
+            'totalTime', _mainSharedPref.getInt('totalTime')! + elapsedTime);
+        _mainSharedPref.setInt(
+            'totalGames', 1 + _mainSharedPref.getInt('totalGames')!);
         triggerWin();
         _gameRunning = false;
       }
