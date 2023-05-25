@@ -9,7 +9,6 @@ import 'package:quotle/src/pages/settings_page.dart';
 import 'package:quotle/src/pages/category_page.dart';
 import 'package:quotle/src/pages/playing_page.dart';
 import 'package:quotle/src/pages/about_page.dart';
-import 'package:quotle/src/pages/help_page.dart';
 
 import 'src/classes/language_constants.dart';
 
@@ -95,7 +94,6 @@ class MyAppState extends State<MyApp> {
                 category: ModalRoute.of(context)!.settings.arguments as String,
               ),
           '/about': (context) => const AboutPage(),
-          '/help': (context) => const HelpPage(),
         });
   }
 }

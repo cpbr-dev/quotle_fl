@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:quotle/src/widgets/help_overlay.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -14,6 +15,7 @@ class MainMenuState extends State<MainMenu>
   bool _isTitle = true;
   late AnimationController _controller;
   late Animation<double> _animation;
+  bool overlayActive = false;
 
   @override
   void initState() {
@@ -100,11 +102,55 @@ class MainMenuState extends State<MainMenu>
       ),
       floatingActionButton: IconButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/help');
+          setState(() {
+            if (overlayActive) {
+              overlayEntry.remove();
+              overlayActive = false;
+            } else {
+              showHelpOverlay(context, overlayEntry);
+              overlayActive = true;
+            }
+          });
         },
-        icon: const Icon(Icons.help),
+        icon: overlayActive ? const Icon(Icons.close) : const Icon(Icons.help),
         iconSize: 48,
       ),
     );
   }
+}
+
+final overlayEntry = OverlayEntry(
+  builder: (context) {
+    return Positioned(
+      width: MediaQuery.of(context).size.width * 0.8,
+      height: MediaQuery.of(context).size.height * 0.8,
+      left: MediaQuery.of(context).size.width * .1,
+      top: MediaQuery.of(context).size.height * .1,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surfaceVariant,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        padding: const EdgeInsets.all(20),
+        child: Column(children: [
+          Text(
+            AppLocalizations.of(context)!.helpTitle,
+            style: TextStyle(
+                fontSize: 20,
+                color: Theme.of(context).colorScheme.onSurfaceVariant),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            AppLocalizations.of(context)!.helpText,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ]),
+      ),
+    );
+  },
+);
+
+void showHelpOverlay(BuildContext context, OverlayEntry overlayEntry) async {
+  OverlayState overlayState = Overlay.of(context);
+  overlayState.insert(overlayEntry);
 }

@@ -90,12 +90,12 @@
     "@errorText": {
         "description": "Text that appears when an error occurs"
     },
-    "helpText": "Explain game",
-    "@helpText": {
-        "description": "Explanation of the game"
-    },
     "helpTitle": "Help",
     "@helpTitle": {
         "description": "Title of the help page"
+    },
+    "helpText": "Explain game",
+    "@helpText": {
+        "description": "Explanation of the game"
     }
 }
