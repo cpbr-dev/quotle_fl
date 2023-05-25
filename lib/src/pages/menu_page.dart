@@ -98,6 +98,13 @@ class MainMenuState extends State<MainMenu>
           ],
         ),
       ),
+      floatingActionButton: IconButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/help');
+        },
+        icon: const Icon(Icons.help),
+        iconSize: 48,
+      ),
     );
   }
 }

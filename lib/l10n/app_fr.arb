@@ -89,5 +89,13 @@
     "errorText": "Une erreur s'est produite. Veuillez réessayer plus tard.",
     "@errorText": {
         "description": "Texte d'erreur"
+    },
+    "helpText": "Explication du jeu",
+    "@helpText": {
+        "description": "Explication du jeu"
+    },
+    "helpTitle": "Aide",
+    "@helpTitle": {
+        "description": "Titre page aide"
     }
 }
