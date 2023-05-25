@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:quotle/src/widgets/help_overlay.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quotle/src/Widgets/quote_container.dart';
+
+import '../classes/quote.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -17,10 +21,13 @@ class MainMenuState extends State<MainMenu>
   late Animation<double> _animation;
   bool overlayActive = false;
 
+  Quote testQuote = Quote(category: 'help');
+
   @override
   void initState() {
     super.initState();
 
+    testQuote.quoteBody = "You, shall not, pass!";
     _controller = AnimationController(
         duration: const Duration(milliseconds: 400), vsync: this);
     _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
@@ -72,7 +79,29 @@ class MainMenuState extends State<MainMenu>
                     onPressed: () {
                       Navigator.pushNamed(context, '/categories');
                     },
-                    child: Text(AppLocalizations.of(context)!.playButton),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const FaIcon(FontAwesomeIcons.play),
+                        Text(AppLocalizations.of(context)!.playButton),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  padding:
+                      const EdgeInsetsDirectional.only(bottom: 16, top: 16),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/stats');
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Icon(Icons.bar_chart),
+                        Text(AppLocalizations.of(context)!.statisticTitle)
+                      ],
+                    ),
                   ),
                 ),
                 Container(
@@ -82,7 +111,13 @@ class MainMenuState extends State<MainMenu>
                     onPressed: () {
                       Navigator.pushNamed(context, '/settings');
                     },
-                    child: Text(AppLocalizations.of(context)!.settingsButton),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const FaIcon(FontAwesomeIcons.gears),
+                        Text(AppLocalizations.of(context)!.settingsButton),
+                      ],
+                    ),
                   ),
                 ),
                 Container(
@@ -92,7 +127,13 @@ class MainMenuState extends State<MainMenu>
                     onPressed: () {
                       Navigator.pushNamed(context, '/about');
                     },
-                    child: Text(AppLocalizations.of(context)!.aboutButton),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const FaIcon(FontAwesomeIcons.info),
+                        Text(AppLocalizations.of(context)!.aboutButton),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -103,13 +144,7 @@ class MainMenuState extends State<MainMenu>
       floatingActionButton: IconButton(
         onPressed: () {
           setState(() {
-            if (overlayActive) {
-              overlayEntry.remove();
-              overlayActive = false;
-            } else {
-              showHelpOverlay(context, overlayEntry);
-              overlayActive = true;
-            }
+            showHelpOverlay();
           });
         },
         icon: overlayActive ? const Icon(Icons.close) : const Icon(Icons.help),
@@ -117,40 +152,44 @@ class MainMenuState extends State<MainMenu>
       ),
     );
   }
-}
 
-final overlayEntry = OverlayEntry(
-  builder: (context) {
-    return Positioned(
-      width: MediaQuery.of(context).size.width * 0.8,
-      height: MediaQuery.of(context).size.height * 0.8,
-      left: MediaQuery.of(context).size.width * .1,
-      top: MediaQuery.of(context).size.height * .1,
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceVariant,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        padding: const EdgeInsets.all(20),
-        child: Column(children: [
-          Text(
-            AppLocalizations.of(context)!.helpTitle,
-            style: TextStyle(
-                fontSize: 20,
-                color: Theme.of(context).colorScheme.onSurfaceVariant),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            AppLocalizations.of(context)!.helpText,
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ]),
-      ),
-    );
-  },
-);
-
-void showHelpOverlay(BuildContext context, OverlayEntry overlayEntry) {
-  OverlayState overlayState = Overlay.of(context);
-  overlayState.insert(overlayEntry);
+  Future showHelpOverlay() => showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: AlertDialog(
+              alignment: Alignment.center,
+              content: FractionallySizedBox(
+                heightFactor: 0.8,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(AppLocalizations.of(context)!.helpTitle,
+                        style: Theme.of(context).textTheme.headlineMedium),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(AppLocalizations.of(context)!.helpText),
+                        QuoteContainer(
+                          quote: testQuote,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                ButtonBar(
+                  children: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text(AppLocalizations.of(context)!.returnText),
+                    ),
+                  ],
+                ),
+              ]),
+        );
+      });
 }

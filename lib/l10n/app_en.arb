@@ -24,7 +24,7 @@
     "@categoryText": {
         "description": "Text that tells the user to pick a category"
     },
-    "categoryName": "{category, select, Philosophy{Philosophy} Inspirational{Inspirational} Humor{Humor} Cinema{Cinema} Daily{🔮 Quotle of the day} other{other}}",
+    "categoryName": "{category, select, Philosophy{Philosophy} Inspirational{Inspirational} Humor{Humor} Cinema{Cinema} Daily{Quotle of the day} other{other}}",
     "@categoryName": {
         "description": "Category names",
         "placeholders": {
@@ -94,8 +94,16 @@
     "@helpTitle": {
         "description": "Title of the help page"
     },
-    "helpText": "Explain game",
+    "helpText": "The game objective is to guess the hidden quote by typing words in the text field.\n\n The game ends when the user has found the full quote.\n\n Words that are semantically close to a word in the quote will be highlighted on the corresponding tile.\n\n Tapping on a tile will switch to the length of the word it contains and back.\n\n Try tapping below!",
     "@helpText": {
         "description": "Explanation of the game"
+    },
+    "statisticTitle": "Statistics",
+    "statisticText": "Number of games played : {gamesPlayed}",
+    "@statisticText": {
+        "description": "Text that shows the number of games played",
+        "placeholders": {
+            "gamesPlayed": {}
+        }
     }
 }

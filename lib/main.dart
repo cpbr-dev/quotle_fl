@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:quotle/src/theme/custom_theme.dart';
-
-import 'package:quotle/src/pages/menu_page.dart';
-import 'package:quotle/src/pages/settings_page.dart';
-import 'package:quotle/src/pages/category_page.dart';
-import 'package:quotle/src/pages/playing_page.dart';
-import 'package:quotle/src/pages/about_page.dart';
-
 import 'src/classes/language_constants.dart';
+
+// Import pages
+import 'src/pages/stat_page.dart';
+import 'src/theme/custom_theme.dart';
+import 'src/pages/menu_page.dart';
+import 'src/pages/settings_page.dart';
+import 'src/pages/category_page.dart';
+import 'src/pages/playing_page.dart';
+import 'src/pages/about_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -94,6 +95,7 @@ class MyAppState extends State<MyApp> {
                 category: ModalRoute.of(context)!.settings.arguments as String,
               ),
           '/about': (context) => const AboutPage(),
+          '/stats': (context) => const StatisticPage(),
         });
   }
 }

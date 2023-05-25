@@ -6,7 +6,7 @@ import 'package:quotle/src/Widgets/quote_container.dart';
 import 'package:quotle/src/classes/quote.dart';
 //import 'package:quotle/src/settings/settings.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:quotle/src/util/utils.dart';
+import 'package:quotle/src/utils/utils.dart';
 import '../classes/word.dart';
 import 'package:share_plus/share_plus.dart';
 

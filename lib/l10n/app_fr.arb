@@ -24,7 +24,7 @@
     "@categoryText": {
         "description": "Texte de la page de sélection de catégorie"
     },
-    "categoryName": "{category, select, Philosophy{Philosophie} Inspirational{Inspirationnel} Humor{Humour} Cinema{Cinéma} Daily{🔮 Quotle du jour} other{other}}",
+    "categoryName": "{category, select, Philosophy{Philosophie} Inspirational{Inspirationnel} Humor{Humour} Cinema{Cinéma} Daily{Quotle du jour} other{other}}",
     "@categoryName": {
         "description": "Noms des catégories",
         "placeholders": {
@@ -94,8 +94,16 @@
     "@helpTitle": {
         "description": "Titre page aide"
     },
-    "helpText": "Explication du jeu",
+    "helpText": "L'objectif du jeu est de deviner la citation en entrant les mots qui la composent successivement.\n\n La partie est terminée dès que vous découvrez la citation complète.\n\n Les mots proches dans le champ lexical apparaîtront sur les tuiles.\n\n Appuyez sur une tuile pour dévoiler la longueur d'un mot.\n\n Essayez d'appuyer juste ici!",
     "@helpText": {
         "description": "Explication du jeu"
+    },
+    "statisticTitle": "Statistiques",
+    "statisticText": "Nombre de parties jouées : {gamesPlayed}",
+    "@statisticText": {
+        "description": "Texte qui affiche le nombre de parties jouées",
+        "placeholders": {
+            "gamesPlayed": {}
+        }
     }
 }

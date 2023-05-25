@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:quotle/src/classes/quote.dart';
 import 'package:quotle/src/classes/word.dart';
-import 'package:quotle/src/util/endpoint.dart';
+import 'package:quotle/src/utils/endpoint.dart';
 
 class Util {
   static RegExp punctuationRegex =

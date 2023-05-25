@@ -1,6 +1,6 @@
 import 'package:quotle/src/classes/word.dart';
-import 'package:quotle/src/util/utils.dart';
-import 'package:quotle/src/util/endpoint.dart';
+import 'package:quotle/src/utils/utils.dart';
+import 'package:quotle/src/utils/endpoint.dart';
 
 class Quote {
   List<Word> body = [];

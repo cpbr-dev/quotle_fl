@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quotle/src/util/utils.dart';
+import 'package:quotle/src/utils/utils.dart';
 
 // ignore: must_be_immutable
 class Word extends StatefulWidget {
