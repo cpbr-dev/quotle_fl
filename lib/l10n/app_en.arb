@@ -94,7 +94,7 @@
     "@helpTitle": {
         "description": "Title of the help page"
     },
-    "helpText": "The game objective is to guess the hidden quote by typing words in the text field.\n\n The game ends when the user has found the full quote.\n\n Words that are semantically close to a word in the quote will be highlighted on the corresponding tile.\n\n Tapping on a tile will switch to the length of the word it contains and back.\n\n Try tapping below!",
+    "helpText": "The game objective is to guess the hidden quote by typing words in the text field.\n\nThe game ends when the user has found the full quote.\n\nWords that are semantically close to a word in the quote will be highlighted on the corresponding tile.\n\nTapping on a tile will switch to the length of the word it contains and back.\n\n Try tapping below!",
     "@helpText": {
         "description": "Explanation of the game"
     },

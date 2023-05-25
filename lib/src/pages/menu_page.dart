@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quotle/src/Widgets/quote_container.dart';
 
 import '../classes/quote.dart';
+import '../classes/word.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -28,6 +28,8 @@ class MainMenuState extends State<MainMenu>
     super.initState();
 
     testQuote.quoteBody = "You, shall not, pass!";
+    testQuote.authorName = "Gandalf";
+
     _controller = AnimationController(
         duration: const Duration(milliseconds: 400), vsync: this);
     _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
@@ -175,6 +177,8 @@ class MainMenuState extends State<MainMenu>
                         QuoteContainer(
                           quote: testQuote,
                         ),
+                        Text(
+                            '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t - ${testQuote.author}'),
                       ],
                     ),
                   ],

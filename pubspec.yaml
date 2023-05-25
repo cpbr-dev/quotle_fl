@@ -1,4 +1,4 @@
-name: quotle
+name: Quotle
 description: A Quote guessing game.
 publish_to: 'none'
 version: 0.2.4

@@ -94,7 +94,7 @@
     "@helpTitle": {
         "description": "Titre page aide"
     },
-    "helpText": "L'objectif du jeu est de deviner la citation en entrant les mots qui la composent successivement.\n\n La partie est terminée dès que vous découvrez la citation complète.\n\n Les mots proches dans le champ lexical apparaîtront sur les tuiles.\n\n Appuyez sur une tuile pour dévoiler la longueur d'un mot.\n\n Essayez d'appuyer juste ici!",
+    "helpText": "L'objectif du jeu est de deviner la citation en entrant les mots qui la composent successivement.\n\nLa partie est terminée dès que vous découvrez la citation complète.\n\nLes mots proches dans le champ lexical apparaîtront sur les tuiles.\n\nAppuyez sur une tuile pour dévoiler la longueur d'un mot.\n\nEssayez d'appuyer juste ici!",
     "@helpText": {
         "description": "Explication du jeu"
     },

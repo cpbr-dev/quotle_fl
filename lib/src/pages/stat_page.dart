@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quotle/src/utils/utils.dart';
 
+// ignore: must_be_immutable
 class StatisticPage extends StatelessWidget {
   StatisticPage({
     Key? key,
@@ -31,28 +32,36 @@ class StatisticPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(AppLocalizations.of(context)!.statisticTitle)),
       body: Container(
-        margin: const EdgeInsets.only(top: 24),
+        alignment: Alignment.topCenter,
         padding: const EdgeInsets.all(32),
         child: ListView(
           shrinkWrap: true,
           children: [
             Text(
               AppLocalizations.of(context)!.statisticTotalGames(_totalGames),
+              style: const TextStyle(fontSize: 17),
             ),
             Text(
               AppLocalizations.of(context)!
                   .statisticTotalGuesses(_totalGuesses),
+              style: const TextStyle(fontSize: 17),
             ),
-            Text(AppLocalizations.of(context)!
-                .statisticAverageGuesses(_averageGuesses)),
             Text(
               AppLocalizations.of(context)!
-                  .statisticTotalTime(Util.formatDurationHours(_totalTime)),
+                  .statisticAverageGuesses(_averageGuesses),
+              style: const TextStyle(fontSize: 17),
+            ),
+            Text(
+              AppLocalizations.of(context)!.statisticTotalTime(
+                Util.formatDurationHours(_totalTime),
+              ),
+              style: const TextStyle(fontSize: 17),
             ),
             Text(
               AppLocalizations.of(context)!.statisticAverageTime(
                 Util.formatDurationHours(_averageTime),
               ),
+              style: const TextStyle(fontSize: 17),
             ),
           ],
         ),
