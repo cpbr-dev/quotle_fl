@@ -150,7 +150,7 @@ final overlayEntry = OverlayEntry(
   },
 );
 
-void showHelpOverlay(BuildContext context, OverlayEntry overlayEntry) async {
+void showHelpOverlay(BuildContext context, OverlayEntry overlayEntry) {
   OverlayState overlayState = Overlay.of(context);
   overlayState.insert(overlayEntry);
 }

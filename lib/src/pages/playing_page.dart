@@ -272,8 +272,10 @@ class PlayingPageState extends State<PlayingPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(AppLocalizations.of(context)!
-                        .endGameText(Util.formatDuration(elapsedTime))),
+                    Text(
+                      AppLocalizations.of(context)!
+                          .endGameText(Util.formatDuration(elapsedTime)),
+                    ),
                     Flexible(
                       child: Text(
                         quote.body.map((e) => e.text).join(''),
