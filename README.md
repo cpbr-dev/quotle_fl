@@ -41,13 +41,13 @@ To run Quotle on your device, please follow these steps:
 
 ### ! ONLY FRENCH IS SUPPORTED BY THE CURRENT API !
 
-1. When you launch the Quotle app, you will be presented with a screen containing a text field and a set of tiles.
+1. When you launch the Quotle app, you may pick a category and be presented with a screen containing a text field and a set of tiles. Each tile corresponds to a word in the quote.
 
 2. The text field is where you can type your guesses to uncover the hidden quote. Start typing words that you think might be part of the quote.
 
 3. As you type, Quotle will analyze your input and highlight tiles that contain words semantically close to the hidden quote. This can help you narrow down your search.
 
-4. To switch the length of a word on a tile, simply tap on it. Tapping will alternate between displaying the full word and only its length. This feature can be useful to help you deduce the hidden quote.
+4. To switch to the length of a word on a tile, simply tap on it. Tapping will alternate between displaying the hint for the word and its length. This feature can be useful to help you deduce the hidden quote.
 
 5. Continue guessing words and using the tile hints until you have successfully revealed the entire quote.
 
