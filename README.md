@@ -64,5 +64,7 @@ Quotle is released under the [CC-BY 3.0](https://creativecommons.org/licenses/by
 ## Acknowledgements
 
 Quotle was developed as part of a Mobile Development class.
-App Logo by [Feozard](https://github.com/Feozard)
-The data used is by [Jean-Philippe Fauconnier](https://fauconnier.github.io/#data)
+
+App Logo by [Feozard](https://github.com/Feozard).
+
+The data used is by [Jean-Philippe Fauconnier](https://fauconnier.github.io/#data).
