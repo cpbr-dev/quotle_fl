@@ -55,7 +55,7 @@ To run Quotle on your device, please follow these steps:
 
 ## Contributing
 
-Thank you for your interest in contributing to Quotle! If you have any ideas, bug reports, or suggestions for improvement, please feel free to open an issue on this repository.
+If you have any ideas, bug reports, or suggestions for improvement, please feel free to open an issue on this repository.
 
 ## License
 
